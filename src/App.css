@@ -1,0 +1,46 @@
+.App {
+  height: 100vh;
+  width: 100%;
+}
+
+.container {
+  padding: 5rem 0;
+  width: 90%;
+  margin: auto;
+}
+
+.filter {
+  margin-bottom: 3rem;
+  display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.filter__label {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.filter__input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: inherit;
+
+
+}
+
+.filter__input:focus{
+    outline: none;
+}
+.filter__input option{
+    padding: 0.6rem;
+     display: block;
+}

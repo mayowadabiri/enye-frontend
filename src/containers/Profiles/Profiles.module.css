@@ -1,0 +1,14 @@
+.profiles{
+    /* width: 80%;
+    margin: auto; */
+    height: 100%;
+    /* margin-top: 10rem; */
+}
+
+.profilesContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    column-gap: 20px;
+    row-gap: 30px;
+    justify-content: space-between;
+}
