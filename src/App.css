@@ -44,3 +44,17 @@
     padding: 0.6rem;
      display: block;
 }
+
+
+.pagination{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination__container{
+  background-color: red;
+}
+
+.pagination__item{
+  
+}

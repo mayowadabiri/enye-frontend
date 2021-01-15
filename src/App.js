@@ -22,7 +22,27 @@ const App = () => {
           </div>
           <div>
             <label className="filter__label">Search</label>
-            <input type="text" className="filter__input" placeholder="Search by username, name or email address" />
+            <input
+              type="text"
+              className="filter__input"
+              placeholder="Search by username, name or email address"
+            />
+          </div>
+        </div>
+        <div className="pagination">
+          <div className="pagination__container">
+            <p className="pagination__item">
+              <span>1</span>
+            </p>
+            <p className="pagination__item">
+              <span>2</span>
+            </p>
+            <p className="pagination__item">
+              <span>3</span>
+            </p>
+            <p className="pagination__item">
+              <span>4</span>
+            </p>
           </div>
         </div>
         <Profiles />
