@@ -3,9 +3,10 @@ import Profiles from "./containers/Profiles/Profiles";
 import "./App.css";
 import { useEffect, useState } from "react";
 import Input from "./components/Input/Input";
+import axios from "axios";
 
 const App = () => {
-  // const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState([]);
   const [searches, setSearches] = useState({
     gender: {
       elementType: "select",
@@ -56,11 +57,17 @@ const App = () => {
   });
 
   useEffect(() => {
-      
+    axios
+      .get("https://api.enye.tech/v1/challenge/records")
+      .then((res) => {
+        console.log(res.data);
+        const sliced = res.data.records.profiles.slice(0, 20)
+        setProfiles(sliced);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   }, []);
-
-
-
 
   const changeHandler = (event, formType) => {
     const updatedForm = {
@@ -112,7 +119,7 @@ const App = () => {
             </p>
           </div>
         </div>
-        <Profiles />
+        <Profiles profile={profiles} />
       </div>
     </div>
   );

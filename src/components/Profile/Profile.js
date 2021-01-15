@@ -1,16 +1,15 @@
-
 // @ts-nocheck
 import classes from "./Profile.module.css";
 
-const Profile = () => {
+const Profile = ({ user }) => {
   return (
     <div className={classes.profile}>
       <div className={classes.profileContainer}>
         <div className={classes.profileHeader}>
           <div className={classes.profileIcon}>M</div>
           <div className={classes.profileName}>
-            <h1>Lorem Ipsum</h1>
-            <p>lorem@posum.com</p>
+            <h1>{user.Firstname}</h1>
+            <p>{user.Email}</p>
             <small>mayowad43</small>
             <small>Last Login: 1992 12:00:30</small>
           </div>
@@ -54,7 +53,6 @@ const Profile = () => {
             <p>Male</p>
           </div>
         </div>
-        
       </div>
     </div>
   );
