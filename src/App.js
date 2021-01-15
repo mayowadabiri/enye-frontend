@@ -1,34 +1,101 @@
+// @ts-nocheck
 import Profiles from "./containers/Profiles/Profiles";
 import "./App.css";
+import { useEffect, useState } from "react";
+import Input from "./components/Input/Input";
 
 const App = () => {
+  // const [profiles, setProfiles] = useState([]);
+  const [searches, setSearches] = useState({
+    gender: {
+      elementType: "select",
+      label: "Country",
+      options: [
+        {
+          value: "Male",
+          name: "Male",
+        },
+        {
+          value: "Female",
+          name: "Female",
+        },
+        {
+          value: "-",
+          name: "Prefer  not to say",
+        },
+      ],
+      value: "",
+    },
+
+    payment: {
+      elementType: "select",
+      label: "Country",
+      options: [
+        {
+          value: "Male",
+          name: "Male",
+        },
+        {
+          value: "Female",
+          name: "Female",
+        },
+        {
+          value: "-",
+          name: "Prefer  not to say",
+        },
+      ],
+      value: "",
+    },
+    name: {
+      elementType: "input",
+      label: "Search",
+      type: "text",
+      value: "",
+      placeholder: "Search by name, username or email address",
+    },
+  });
+
+  useEffect(() => {
+      
+  }, []);
+
+
+
+
+  const changeHandler = (event, formType) => {
+    const updatedForm = {
+      ...searches[formType],
+      value: event.target.value,
+    };
+    setSearches({
+      ...searches,
+      [formType]: updatedForm,
+    });
+  };
+
+  let search = [];
+  for (let key in searches) {
+    search.push({
+      id: key,
+      config: searches[key],
+    });
+  }
+  let form = search.map((form) => (
+    <Input
+      key={form.id}
+      onchange={(event) => changeHandler(event, form.id)}
+      value={form.config.value}
+      elementType={form.config.elementType}
+      label={form.config.label}
+      options={form.config.options}
+      place={form.config.placeholder}
+    />
+  ));
+
   return (
     <div className="App">
       <div className="container">
-        <div className="filter">
-          <div>
-            <label className="filter__label">Filter by Gender:</label>
-            <select className="filter__input">
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-          <div>
-            <label className="filter__label">Filter by Payment Method:</label>
-            <select className="filter__input">
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-          <div>
-            <label className="filter__label">Search</label>
-            <input
-              type="text"
-              className="filter__input"
-              placeholder="Search by username, name or email address"
-            />
-          </div>
-        </div>
+        <div className="filter">{form}</div>
         <div className="pagination">
           <div className="pagination__container">
             <p className="pagination__item">

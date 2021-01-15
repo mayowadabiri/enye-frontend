@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Profile from "../../components/Profile/Profile";
 import classes from "./Profiles.module.css"
 const Profiles = () => {

@@ -12,49 +12,33 @@
 .filter {
   margin-bottom: 3rem;
   display: flex;
-    /* flex-direction: column; */
-    justify-content: space-between;
+  /* flex-direction: column; */
+  justify-content: space-around;
 }
 
-.filter__label {
-  font-family: "Nunito", sans-serif;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.filter__input {
-  display: inline-block;
-  width: 100%;
-  padding: 0.6rem;
-  border: none;
-  border: 1px solid black;
-  border-radius: 5px;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  font-family: inherit;
-
-
-}
-
-.filter__input:focus{
-    outline: none;
-}
-.filter__input option{
-    padding: 0.6rem;
-     display: block;
-}
-
-
-.pagination{
+.pagination {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 2rem;
 }
-.pagination__container{
-  background-color: red;
+.pagination__container {
+  display: flex;
 }
 
-.pagination__item{
-  
+.pagination__item {
+  padding: 20px 25px;
+  background-color: gainsboro;
+  border: 1px solid black;
+  cursor: pointer;
+
+}
+
+.pagination__item:hover{
+  background-color: white;
+  color: black;
+}
+
+.pagination__item:not(:last-child){
+    border-right-width: 0;
 }
