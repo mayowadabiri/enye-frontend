@@ -30,19 +30,23 @@ const App = () => {
 
     payment: {
       elementType: "select",
-      label: "Country",
+      label: "Payment Method",
       options: [
         {
-          value: "Male",
-          name: "Male",
+          value: "money order",
+          name: "money order",
         },
         {
-          value: "Female",
-          name: "Female",
+          value: "check",
+          name: "check",
         },
         {
-          value: "-",
-          name: "Prefer  not to say",
+          value: "cc",
+          name: "cc",
+        },
+        {
+          value: "paypal",
+          name: "paypal",
         },
       ],
       value: "",
@@ -57,17 +61,45 @@ const App = () => {
   });
 
   useEffect(() => {
-    axios
-      .get("https://api.enye.tech/v1/challenge/records")
-      .then((res) => {
-        console.log(res.data);
-        const sliced = res.data.records.profiles.slice(0, 20)
-        setProfiles(sliced);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    const profiles = localStorage.getItem("profiles");
+    if (!profiles) {
+      axios
+        .get("https://api.enye.tech/v1/challenge/records")
+        .then((res) => {
+          localStorage.setItem(
+            "profiles",
+            JSON.stringify(res.data.records.profiles)
+          );
+          const sliced = res.data.records.profiles.slice(0, 20);
+          console.log(sliced);
+          setProfiles(sliced);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    } else {
+      const update = JSON.parse(profiles);
+      const updated = update.slice(0, 20);
+      setProfiles(updated);
+    }
   }, []);
+
+  useEffect(() => {
+    const updatedProfile = profiles.filter((prof) => {
+      console.log(prof.FirstName);
+      return (
+        prof.FirstName.toLowerCase().includes(
+          searches.name.value.toLowerCase()
+        ) ||
+        prof.Gender.includes(searches.gender.value) ||
+        prof.PaymentMethod.includes(searches.payment.value) ||
+        prof.Email.toLowerCase().includes(searches.name.value.toLowerCase())
+      );
+    });
+    console.log(searches.name.value);
+    // console.log(updatedProfile);
+    setProfiles(updatedProfile);
+  }, [searches.gender.value, searches.name.value, searches.payment.value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeHandler = (event, formType) => {
     const updatedForm = {

@@ -15,19 +15,3 @@ const Profiles = ({ profile }) => {
 };
 
 export default Profiles;
-
-  // "FirstName": "",
-  //           "LastName": "",
-  //           "Gender": "",
-  //           "Latitude": "",
-  //           "Longitude": "",
-  //           "CreditCardNumber": "",
-  //           "CreditCardType": "",
-  //           "Email": "",
-  //           "DomainName": "",
-  //           "PhoneNumber": "",
-  //           "MacAddress": "",
-  //           "URL": "",
-  //           "UserName": "",
-  //           "LastLogin": "",
-  //           "PaymentMethod": ""
