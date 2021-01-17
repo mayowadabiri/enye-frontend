@@ -78,6 +78,7 @@ const App = () => {
           console.log(err.response);
         });
     } else {
+      console.log(true)
       const update = JSON.parse(profiles);
       const updated = update.slice(0, 20);
       setProfiles(updated);
