@@ -10,8 +10,12 @@ const App = () => {
   const [searches, setSearches] = useState({
     gender: {
       elementType: "select",
-      label: "Country",
+      label: "Gender",
       options: [
+        {
+          value: "_",
+          name: "Filter by Gender"
+        },
         {
           value: "Male",
           name: "Male",
@@ -61,37 +65,36 @@ const App = () => {
   });
 
   useEffect(() => {
-      axios
-        .get("https://api.enye.tech/v1/challenge/records")
-        .then((res) => {
-          localStorage.setItem(
-            "profiles",
-            JSON.stringify(res.data.records.profiles)
-          );
-          const sliced = res.data.records.profiles.slice(0, 20);
-          console.log(sliced);
-          setProfiles(sliced);
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
+    axios
+      .get("https://api.enye.tech/v1/challenge/records")
+      .then((res) => {
+        localStorage.setItem(
+          "profiles",
+          JSON.stringify(res.data.records.profiles)
+        );
+        const sliced = res.data.records.profiles.slice(0, 20);
+        console.log(sliced);
+        setProfiles(sliced);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   }, []);
 
-  useEffect(() => {
-    const updatedProfile = profiles.filter((prof) => {
-      console.log(prof.FirstName);
-      return (
-        prof.FirstName.toLowerCase().includes(
-          searches.name.value.toLowerCase()
-        ) ||
-        prof.Gender.includes(searches.gender.value) ||
-        prof.PaymentMethod.includes(searches.payment.value) ||
-        prof.Email.toLowerCase().includes(searches.name.value.toLowerCase())
-      );
-    }); 
-    console.log(searches.name.value);
-    setProfiles(updatedProfile);
-  }, [searches.gender.value, searches.name.value, searches.payment.value]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   const updatedProfile = profiles.filter((prof) => {
+  //     return (
+  //       prof.FirstName.toLowerCase().includes(
+  //         searches.name.value.toLowerCase()
+  //       ) ||
+  //       prof.Gender.includes(searches.gender.value) ||
+  //       prof.PaymentMethod.includes(searches.payment.value) ||
+  //       prof.Email.toLowerCase().includes(searches.name.value.toLowerCase())
+  //     );
+  //   });
+  //   console.log(searches.name.value);
+  //   setProfiles(updatedProfile);
+  // }, [searches.gender.value, searches.name.value, searches.payment.value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeHandler = (event, formType) => {
     const updatedForm = {
@@ -143,7 +146,12 @@ const App = () => {
             </p>
           </div>
         </div>
-        <Profiles profile={profiles} />
+        <Profiles
+          profile={profiles}
+          value={searches.name.value}
+          gender={searches.gender.value}
+          payment={searches.gender.value}
+        />
       </div>
     </div>
   );
