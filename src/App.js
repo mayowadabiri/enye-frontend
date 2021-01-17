@@ -61,8 +61,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    const profiles = localStorage.getItem("profiles");
-    if (!profiles) {
       axios
         .get("https://api.enye.tech/v1/challenge/records")
         .then((res) => {
@@ -77,12 +75,6 @@ const App = () => {
         .catch((err) => {
           console.log(err.response);
         });
-    } else {
-      console.log(true)
-      const update = JSON.parse(profiles);
-      const updated = update.slice(0, 20);
-      setProfiles(updated);
-    }
   }, []);
 
   useEffect(() => {
@@ -96,9 +88,8 @@ const App = () => {
         prof.PaymentMethod.includes(searches.payment.value) ||
         prof.Email.toLowerCase().includes(searches.name.value.toLowerCase())
       );
-    });
+    }); 
     console.log(searches.name.value);
-    // console.log(updatedProfile);
     setProfiles(updatedProfile);
   }, [searches.gender.value, searches.name.value, searches.payment.value]); // eslint-disable-line react-hooks/exhaustive-deps
 
